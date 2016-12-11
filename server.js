@@ -4,8 +4,9 @@ var mongodb = require('mongodb')
 var validUrl = require('valid-url')
 var shortid = require('shortid')
 var path = require('path')
+require('dotenv').config({silent: true})
 var port = process.env.PORT || 8080
-var url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener'
+var url = process.env.MONGODB_URI || 'mongodb://localhost:27017/url-shortener'
 var MongoClient = mongodb.MongoClient
 var app_url = process.env.APP_URL || 'http://localhost:' + port
 

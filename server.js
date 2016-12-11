@@ -47,12 +47,15 @@ app.get('/new/*', function (req, res) {
           } else {
             var doc = {
               original_url: original_url,
-              shortened_url: app_url+shortid.generate()
+              shortened_url: shortid.generate()
             }
             collection.insert(doc, function(err, data) {
               if (err) throw err
               res.writeHead(200, { 'Content-Type': 'application/json' })
-              res.end(JSON.stringify(doc))
+              res.end(JSON.stringify({
+                original_url: doc.original_url,
+                shortened_url: app_url+doc.shortened_url
+              }))
               db.close()
             })
           }
